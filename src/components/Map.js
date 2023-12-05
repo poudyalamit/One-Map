@@ -1,21 +1,23 @@
-import React, { useEffect, useRef } from 'react'
-import L from 'leaflet';
+import React from 'react'
 import 'leaflet/dist/leaflet.css';
-
+import { MapContainer, TileLayer } from 'react-leaflet';
 const Map = () => {
-    const mapRef = useRef(null);
-    useEffect(() => {
-        if (!mapRef.current) {
-            mapRef.current = L.map('map').setView([27.7172, 85.3240], 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
-                maxZoom:30
-            }).addTo(mapRef.current);
-        }
-    }, []);
     return (
-        <div id="map" style={{ height: '100vh', width: '100%' }}></div>
+        <MapContainer
+            id="map"
+            style={{ height: '100vh', width: '100%' }}
+            center={[27.7172, 85.3240]}
+            zoom={13}
+            zoomControl={false}
+        >
+            <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='© OpenStreetMap contributors'
+                maxZoom={30}
+            />
+        </MapContainer>
     );
+
 }
 
 export default Map
