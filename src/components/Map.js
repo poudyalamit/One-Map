@@ -1,6 +1,7 @@
 import React from 'react'
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { LayersControl, MapContainer, TileLayer } from 'react-leaflet';
+// require('dotenv').config();
 const Map = () => {
     return (
         <MapContainer
@@ -15,6 +16,16 @@ const Map = () => {
                 attribution='© OpenStreetMap contributors'
                 maxZoom={30}
             />
+
+            <LayersControl position='topright'>
+                <LayersControl.BaseLayer name='satellite'>
+                <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}'/>
+                </LayersControl.BaseLayer>
+
+                <LayersControl.BaseLayer name='OSM'>
+                <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'/>
+                </LayersControl.BaseLayer>
+            </LayersControl>
         </MapContainer>
     );
 
