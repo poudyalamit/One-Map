@@ -1,6 +1,6 @@
 import React from 'react'
 import 'leaflet/dist/leaflet.css';
-import { LayersControl, MapContainer, TileLayer } from 'react-leaflet';
+import { LayersControl, MapContainer, TileLayer, WMSTileLayer } from 'react-leaflet';
 // require('dotenv').config();
 const Map = () => {
     return (
@@ -16,12 +16,21 @@ const Map = () => {
                 attribution='© OpenStreetMap contributors'
                 maxZoom={30}
             />
+            {/* <WMSTileLayer 
+           url="https://mangomap.com/onemapnepal/maps/141796/district"
+           version="2.20.1"
+           opacity={1}
+           transparent
+           layers={"PropsureWndb:sqlrouteviews"}
+           srs="EPSG:4326"
+           format="image/png"
+          /> */}
 
             <LayersControl position='topright'>
                 <LayersControl.BaseLayer name='satellite'>
-                <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}'/>
+                <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'/>
                 </LayersControl.BaseLayer>
-
+                
                 <LayersControl.BaseLayer name='OSM'>
                 <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'/>
                 </LayersControl.BaseLayer>
